@@ -1,0 +1,34 @@
+@import 'tailwindcss';
+
+
+@theme {
+  --color-blublk: #111827;
+  --color-bluish: #1E293B;
+  --color-blktxt: #F3F4F6;
+  --color-blkgray: #9CA3AF;
+
+  --color-lightpurp: rgba(96, 112, 134, .3);
+  --color-purp: hsl(258, 72%, 69%, 1);
+  --color-whitepurp: hsl(210, 20%, 98%)
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+.sidebar svg {
+  font-size: 20px;
+}
+
+.sidebar .option {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.sidebar .option:hover {
+  background-color: var(--color-lightpurp);
+}
