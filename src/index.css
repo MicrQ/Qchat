@@ -15,6 +15,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
+#root {
+  display: flex;
+  min-height: 100vh;
+}
+
 .sidebar svg {
   font-size: 20px;
 }
@@ -31,4 +36,14 @@
 
 .sidebar .option:hover {
   background-color: var(--color-lightpurp);
+}
+
+.search-box svg:not(:nth-child(3)) {
+  font-size: 20px;
+  transition: all .3s;
+  cursor: pointer;
+}
+
+.search-box svg:not(:nth-child(3)):hover {
+  color: white;
 }
