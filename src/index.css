@@ -47,3 +47,7 @@
 .search-box svg:not(:nth-child(3)):hover {
   color: white;
 }
+
+.main-result-box::-webkit-scrollbar {
+  display: none;
+}
