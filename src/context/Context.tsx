@@ -35,6 +35,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading(true);
         setShowResult(true);
         setRecentPrompt(input)
+        setPrevPrompts((prev) => [...prev, input.slice(0, 15)]);
         setInput('');
 
         const res = await main(input);

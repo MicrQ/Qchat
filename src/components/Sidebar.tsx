@@ -1,10 +1,14 @@
 import { useState} from 'react'
+import { useContext } from 'react';
+import { Context } from '../context/Context';
 import { FaBars, FaPlus, FaRegCommentDots,
     FaQuestion, FaHistory, FaCog } from 'react-icons/fa';
 
 
 const Sidebar = () => {
     const [extended, setExtended] = useState(false);
+
+    const { onSent, prevPrompts, setRecentPrompt } = useContext(Context);
 
     const toggleSidebar = () => {
         setExtended(!extended);
@@ -22,10 +26,18 @@ const Sidebar = () => {
                 </div>
                 {extended && <div className='flex flex-col'>
                     <p className='mt-10 mb-8'>Recent</p>
-                    <div className='option'>
+                    {prevPrompts.map((item: string, index: number) => {
+                        return (
+                            <div key={index} className='option'>
+                                <FaRegCommentDots />
+                                <p>{item} ...</p>
+                            </div>
+                        );
+                    })}
+                    {/* <div className='option'>
                         <FaRegCommentDots />
                         <p>What is recent...</p>
-                    </div>
+                    </div> */}
                 </div>
                 }
             </div>
