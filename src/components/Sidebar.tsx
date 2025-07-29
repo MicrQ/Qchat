@@ -6,7 +6,7 @@ import { FaBars, FaPlus, FaRegCommentDots,
 
 
 const Sidebar = () => {
-    const [extended, setExtended] = useState(false);
+    const [extended, setExtended] = useState(true);
 
     const { onSent, prevPrompts, setRecentPrompt } = useContext(Context);
 
@@ -15,7 +15,8 @@ const Sidebar = () => {
     };
 
     return (
-        <div className='sidebar h-screen inline-flex flex-col justify-between bg-whitepurp py-10 px-3'>
+        <div className='sidebar h-screen inline-flex flex-col justify-between bg-whitepurp py-10 px-3
+            dark:bg-blublk dark:text-whitepurp'>
             {/* top */}
             <div>
                 <FaBars className='ml-3 cursor-pointer text-purp' onClick={toggleSidebar} />

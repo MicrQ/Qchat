@@ -1,18 +1,21 @@
 import { useContext } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { Context } from '../context/Context';
-import { FaRegImage, FaMicrophone, FaPaperPlane } from 'react-icons/fa';
+import { FaRegImage, FaMicrophone, FaPaperPlane, FaMoon, FaSun } from 'react-icons/fa';
 
 
 const Main = () => {
     const { onSent, recentPrompt, showResult,
-        loading, result, setInput, input } = useContext(Context);
+        loading, result, setInput, input, theme, toggleTheme } = useContext(Context);
 
     return (
-        <div className='flex-1 min-h-screen pb-[15vh] relative'>
+        <div className='flex-1 min-h-screen pb-[15vh] relative dark:bg-bluish'>
             <div className='flex items-center justify-between p-5 text-purp text-[22px]'>
                 <p className='text-[25px] font-bold'>QChat</p>
+                <div className='flex items-center gap-4'>
+                {theme === 'light' ? <FaMoon onClick={toggleTheme} className='cursor-pointer'/> : <FaSun className='cursor-pointer' onClick={toggleTheme} />}
                 <FaUser className='m-4 rounded-full border-2 border-purp' size={40} />
+                </div>
             </div>
 
             <div className='max-w-[1000px] m-auto'>
@@ -29,7 +32,7 @@ const Main = () => {
                     </div>
             ) : (
                 
-                <div className='main-result-box py-[5%] max-h-[70vh] overflow-y-auto'>
+                <div className='main-result-box py-[5%] max-h-[70vh] overflow-y-auto dark:text-whitepurp'>
                     <div className='flex items-center my-10 gap-5'>
                         <div><FaUser className='text-[30px] text-purp border rounded-full'/></div>
                         <p>{recentPrompt}</p>
@@ -53,7 +56,8 @@ const Main = () => {
                     rounded-[50px] max-w-[900px] m-auto'>
                     <input onChange={(e) => setInput(e.target.value)} value={input}
                      type="text" placeholder='Enter your prompt...'
-                    className='flex-1 bg-transparent border-none p-2 outline-none text-[18px]' />
+                    className='flex-1 bg-transparent border-none p-2 outline-none text-[18px]
+                    dark:text-whitepurp' />
                     <div className='search-box'>
                         <div className="flex items-center gap-4">
                             <button className="">
@@ -69,7 +73,7 @@ const Main = () => {
                         </div>
                     </div>
                 </div>
-                <p className='text-[13px] my-3 mx-auto text-center font-light'>
+                <p className='text-[13px] my-3 mx-auto text-center font-light dark:text-whitepurp/80'>
                     QChat may display HARSH and inaccurate info, please verify with reliable sources.
                 </p>
                 <p className='text-purp text-center italic my-2 font-light text-[14px]'>

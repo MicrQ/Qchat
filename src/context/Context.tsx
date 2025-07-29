@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import main from '../config/config'
 
 type ContextType = {
@@ -12,6 +12,8 @@ type ContextType = {
     result: string;
     input: string;
     setInput: (value: string) => void;
+    theme: 'light' | 'dark';
+    toggleTheme?: () => void;
 };
 
 export const Context = createContext<ContextType>({} as ContextType);
@@ -23,6 +25,32 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [showResult, setShowResult] = useState<boolean>(false);
     const [result, setResult] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+
+    // theme context
+    const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+    
+    // check if theme alrady set in localStorage
+    useEffect(() => {
+        if (localStorage.getItem('theme') === 'dark') {
+            setTheme('dark');
+            document.documentElement.classList.add('dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+            document.documentElement.classList.remove('dark');
+        }
+    }, [theme]);
+
+    const toggleTheme = () => {
+        if (theme === 'light') {
+            setTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            setTheme('light');
+            localStorage.setItem('theme', 'light');
+        }
+    };
+
 
     const delayParagraph = (idx: number, nextWord: string) => {
         setTimeout(() => {
@@ -72,6 +100,8 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
         result,
         input,
         setInput,
+        theme,
+        toggleTheme
     }
 
     return (
